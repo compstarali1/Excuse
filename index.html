@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Stories Collection</title>
+
+<style>
+/* --- FULL PAGE BACKGROUND --- */
+body { 
+    font-family: Arial, sans-serif; 
+    margin:0;
+    padding:0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    
+    /* Background settings */
+    background-image: url('Ali.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    
+    color: #fff;
+    position: relative;
+}
+
+/* Opacity overlay for background */
+body::before {
+    content: "";
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: rgba(0,0,0,0.7); /* Dark base */
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-image: url('Ali.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.3; /* YOUR 0.3 OPACITY */
+    z-index: -1;
+}
+
+/* --- BUTTON CONTAINER - TOP CENTER --- */
+.center-btn-container{
+    display:flex;
+    justify-content:center;
+    align-items: flex-start;
+    padding-top: 40px; /* Space from top */
+    min-height: 80vh;
+    position: relative;
+    z-index: 10; /* Button on TOP */
+}
+
+/* --- ANIMATED BUTTON WITH 3 SHADOWS --- */
+.ethereal-btn{
+    padding:25px 60px;
+    font-size:24px;
+    font-weight:bold;
+    color:#fff;
+    background:linear-gradient(145deg,#9c27b0,#3f51b5);
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    
+    /* 3 LAYERS OF SHADOW */
+    box-shadow: 
+        0 5px 0 #000,                /* Bottom shadow */
+        0 10px 20px rgba(0,0,0,0.5), /* Main depth */
+        0 0 30px rgba(156, 39, 176, 0.4); /* Glow */
+    
+    /* ANIMATION */
+    animation: pulse 2s infinite ease-in-out;
+    transition: transform 0.2s;
+}
+
+.ethereal-btn:hover {
+    transform: scale(1.05);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+}
+
+/* IMAGE OVERLAY */
+.overlay {
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:90%; /* Wider for mobile */
+    max-width: 100%;
+    display:none;
+    z-index:999;
+}
+.overlay img{
+    width:100%;
+    border-radius:12px;
+}
+
+/* AUDIO PROGRESS */
+.audio-box{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+    max-width: 500px;
+    display:none;
+    z-index: 1000;
+}
+
+/* --- RAINING PICTURES / BUBBLE STYLES --- */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    overflow: hidden;
+    animation: rise 16s infinite linear;
+    opacity: 0.8;
+    z-index: 5; /* Between background and button */
+    pointer-events: none;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+    }
+}
+
+.bubble img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+h2 {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    text-shadow: 2px 2px 4px #000;
+    font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Ali’s Naughty, But serious confession</h2>
+
+<div class="center-btn-container">
+    <button class="ethereal-btn" onclick="playAudio()">Well Lets hear your excuse Ali</button>
+</div>
+
+<!-- IMAGE -->
+<div class="overlay" id="overlay">
+    <img src="angel.png">
+</div>
+
+<!-- AUDIO -->
+<div class="audio-box" id="audioBox">
+    <audio id="audio" controls>
+        <source src="story.mp3" type="audio/mpeg">
+    
+</div>
+
+<script>
+// --- AUDIO FUNCTION ---
+function playAudio(){
+    const audio = document.getElementById('audio');
+    const overlay = document.getElementById('overlay');
+    const box = document.getElementById('audioBox');
+
+    overlay.style.display = "block";
+    box.style.display = "block";
+
+    audio.play();
+}
+
+// --- RAINING PICTURES ANIMATION ---
+const imageUrls = [
+            "https://iili.io/qbBkJ4I.png",
+            "https://iili.io/qbBk22t.png",
+            "https://iili.io/qbBkFvn.png",
+            "https://iili.io/qbBk3YX.png",
+            "https://iili.io/qbBkqTG.png",
+            "https://iili.io/qbBkxG2.png",
+            "https://iili.io/qbBkz4S.png",
+            "https://iili.io/qbBkT37.png",
+            "https://iili.io/qbBkua9.png",
+            "https://iili.io/qbBkAve.png",
+            "https://iili.io/qbBkRyu.png",
+            "https://iili.io/qbBkYjj.png",
+            "https://iili.io/qbBklCQ.png",
+            "https://iili.io/qbBk16B.png",
+            "https://iili.io/qbBkG3P.png",
+            "https://iili.io/qbBkMa1.png",
+            "https://iili.io/qbBkhua.png",
+            "https://iili.io/qbBkjwJ.png",
+            "https://iili.io/qbBkwZv.png",
+            "https://iili.io/qbBkOnR.png",
+            "https://iili.io/qbBkk6N.png",
+            "https://iili.io/qbBk8FI.png",
+            "https://iili.io/qbBkr9n.png",
+            "https://iili.io/qbBk4us.png",
+            "https://iili.io/qbBk6wG.png",
+            "https://iili.io/qbBkPtf.png",
+];
+
+function createBubble(imageUrl) {
+    const bubble = document.createElement('div');
+    const img = document.createElement('img');
+    img.src = imageUrl;
+
+    const size = Math.random() * (150 - 80) + 80;
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+    bubble.style.left = `${Math.random() * window.innerWidth}px`;
+    bubble.style.animationDuration = `${Math.random() * 5 + 12}s`;
+
+    bubble.classList.add('bubble');
+    bubble.appendChild(img);
+    document.body.appendChild(bubble);
+}
+
+try {
+    imageUrls.forEach(url => createBubble(url));
+} catch (error) {
+    console.error("An error occurred while creating bubbles: ", error);
+}
+</script>
+
+</body>
+</html>
